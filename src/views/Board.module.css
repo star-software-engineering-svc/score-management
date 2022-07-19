@@ -1,0 +1,19 @@
+.filterForm {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.filterForm>input {
+  width: 80px;
+}
+
+.filterRadioForm {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.pl25 {
+  padding-left: 2.5em !important;
+}
