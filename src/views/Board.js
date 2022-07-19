@@ -7,8 +7,11 @@ import styles from './Board.module.css';
 import Form from 'react-bootstrap/Form';
 import CreateModal from './CreateModal';
 import { addRecord, deleteRecord, getScore } from '../features/counter/scoreSlice';
+import { useTranslation } from "react-i18next";
 
 export function Board() {
+
+    const { t } = useTranslation();
 
     const scores = useSelector(getScore);
     const dispatch = useDispatch();
@@ -56,16 +59,16 @@ export function Board() {
         <Container>
             <Row className='p-2'>
                 <Col>
-                    <div>Score Range:</div>
+                    <div>{t('Score Range')}: </div>
                     <div className={styles.filterForm}>
-                        <div>From:</div>
+                        <div>{t('From')}:</div>
                         <input type="text" className='form-control  form-control-sm' placeholder="0" onChange={(evt) => setFromScore(evt.target.value.trim() == '' ? 0 : parseFloat(evt.target.value.trim()))} />
-                        <div>To:</div>
+                        <div>{t('To')}:</div>
                         <input type="text" className='form-control  form-control-sm' placeholder="100" onChange={(evt) => setToScore(evt.target.value.trim() == '' ? 100 : parseFloat(evt.target.value.trim()))} />
                     </div>
                 </Col>
                 <Col>
-                    <div>Class Range:</div>
+                    <div>{t('Class Range')}:</div>
                     <div className={styles.filterRadioForm}>
                         <div className={`form-check ${styles.pl25}`}>
                             <input className="form-check-input" type="checkbox" value="" id="filterClassA" onClick={(evt) => onSelectClass('A')} />
@@ -90,7 +93,7 @@ export function Board() {
             </Row>
             <Row>
                 <Col>
-                    <button className='btn btn-primary btn-sm' onClick={onAddRecord}>Add</button>
+                    <button className='btn btn-primary btn-sm' onClick={onAddRecord}>{t("Add")}</button>
                     <CreateModal show={showModal} handleClose={onCloesModal} handleSave={onSaveRecord} />
                 </Col>
             </Row>
@@ -100,10 +103,10 @@ export function Board() {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Score</th>
-                                <th scope="col">Class</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">{t('Name')}</th>
+                                <th scope="col">{t('Score')}</th>
+                                <th scope="col">{t('Class')}</th>
+                                <th scope="col">{t('Action')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,7 +123,7 @@ export function Board() {
                                                 <td>{b.score}</td>
                                                 <td>{b.classNo}</td>
                                                 <td>
-                                                    <button className='btn btn-danger btn-sm' onClick={() => onDeleteRecord(idx)}>Delete</button>
+                                                    <button className='btn btn-danger btn-sm' onClick={() => onDeleteRecord(idx)}>{t('Delete')}</button>
                                                 </td>
                                             </tr>
                                         )
